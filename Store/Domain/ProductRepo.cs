@@ -21,13 +21,10 @@ namespace Store.Domain
     public class ProductRepo
     {
         string MyConString_MySQL = "DRIVER={SQL Server};" +
-                                 "SERVER=26.230.84.114, 1433;" + // потому, что сервер на удаленной машине
+                                 "SERVER=26.230.84.114, 1433;" +
                                  "DATABASE=Store;" +
                                  "User ID=sa;" +
                                  "Password=sa;";
-        private readonly string connectionString = "Data Source=fdfd::1ae6:5472, 1433;Database=Store;Persist Security Info=True;User ID=sa;Password=sa";
-        private string fileName = string.Empty;
-        private DataTableCollection tableCollection = null;
 
         private readonly IConfiguration _config;
         private readonly AppDbContext context;

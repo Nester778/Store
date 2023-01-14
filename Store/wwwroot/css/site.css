@@ -78,3 +78,8 @@ body {
 }
 .amount {
 }
+
+.actionLinck {
+    color: #000 !important;
+    text-decoration: none
+}

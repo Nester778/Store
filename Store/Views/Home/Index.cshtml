@@ -9,15 +9,15 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>ProviderName</th>
-            <th>Description</th>
-            <th>CreationData</th>
-            <th>ModificationData</th>
-            <th>Manager</th>
-            <th>Quantity</th>
-            <th>Amount</th>
-            <th>City</th>
+            <th>@Html.ActionLink("Id", "Index", new { sortOrder = ViewBag.IdSortParam, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("ProviderName", "Index", new { sortOrder = ViewBag.ProviderNameSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("CreationData", "Index", new { sortOrder = ViewBag.CreationDataSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("ModificationData", "Index", new { sortOrder = ViewBag.ModificationDataSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Manager", "Index", new { sortOrder = ViewBag.ManagerSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Quantity", "Index", new { sortOrder = ViewBag.QuantitySortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Amount", "Index", new { sortOrder = ViewBag.AmountSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, page = Model.PageViewModel.PageNumber })</th>
 
         </tr>
     </thead>
@@ -40,26 +40,26 @@
             <td>@item.Quantity</td>
             <td>@item.Amount</td>
             <td>@item.City</td>
-            <td><input type="checkbox" class="checkbox" value="@(item.Amount * item.Quantity)" id="@item.Id"/></td>
+            <td><input type="checkbox" class="checkbox" value="@(item.Amount * item.Quantity)" id="@item.Id" /></td>
         </tr>
     }
 </table>
 
+
+
+
 @if (Model.PageViewModel.HasPreviousPage)
 {
-    <a asp-action="Index"
-       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-       class="btn btn-outline-dark">
-        <i class="glyphicon glyphicon-chevron-left"></i>
-        Назад
-    </a>}
+    <span class="btn btn-outline-dark">
+        @Html.ActionLink("Назад", "Index", new { page = Model.PageViewModel.PageNumber - 1})
+    </span>
+}
 @if (Model.PageViewModel.HasNextPage)
 {
-    <a asp-action="Index"
-       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-       class="btn btn-outline-dark">
-        Вперед
-        <i class="glyphicon glyphicon-chevron-right"></i>
-    </a>}
+    <span class="btn btn-outline-dark">
+        @Html.ActionLink("Вперед", "Index", new { page = Model.PageViewModel.PageNumber + 1})
+    </span>
+}
+
 
 

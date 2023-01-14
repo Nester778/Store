@@ -42,7 +42,7 @@
                 <td>@Html.DisplayFor(modelItem => Model[i].City)</td>
                 <td>
                     <input asp-for="@Model[i].Prods.Selected" />
-                    <input type="hidden" asp-for="@Model[i].Id" />
+                    @*<input type="hidden" asp-for="@Model[i].Id" />*@
                 </td>
 
             </tr>

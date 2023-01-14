@@ -29,9 +29,21 @@ namespace Store.Controllers
         {
             _productRepo = productRepo;
         }
-
-        public IActionResult Index(int page = 1)
+        
+        public IActionResult Index(string sortOrder, int page)
         {
+            ViewBag.IdSortParam = String.IsNullOrEmpty(sortOrder) ? "Id_desc" : "";
+            ViewBag.ProviderNameSortParm = sortOrder == "ProviderName" ? "ProviderName_desc" : "ProviderName";
+            ViewBag.DescriptionSortParm = sortOrder == "Description" ? "Description_desc" : "Description";
+            ViewBag.CreationDataSortParm = sortOrder == "CreationData" ? "CreationData_desc" : "CreationData";
+            ViewBag.ModificationDataSortParm = sortOrder == "ModificationData" ? "ModificationData_desc" : "ModificationData";
+            ViewBag.ManagerSortParm = sortOrder == "Manager" ? "Manager_desc" : "Manager";
+            ViewBag.QuantitySortParm = sortOrder == "Quantity" ? "Quantity_desc" : "Quantity";
+            ViewBag.AmountSortParm = sortOrder == "Amount" ? "Amount_desc" : "Amount";
+            ViewBag.CitySortParm = sortOrder == "City" ? "City_desc" : "City";
+
+            
+
             int pageSize = 5;
             int pageSkip = 0;
             if (page > 1)
@@ -66,6 +78,83 @@ namespace Store.Controllers
             var count = products.Count();
 
             var items = products.Skip(pageSkip).Take(pageSize).ToList();
+
+            switch (sortOrder)
+            {
+                case "Id_desc":
+                    items = items.OrderByDescending(s => s.Id).ToList();
+                    break;
+
+                case "ProviderName":
+                    items = items.OrderBy(s => s.ProviderName).ToList();
+                    break;
+
+                case "ProviderName_desc":
+                    items = items.OrderByDescending(s => s.ProviderName).ToList();
+                    break;
+
+                case "Description":
+                    items = items.OrderBy(s => s.Description).ToList();
+                    break;
+
+                case "Description_desc":
+                    items = items.OrderByDescending(s => s.Description).ToList();
+                    break;
+
+                case "CreationData":
+                    items = items.OrderBy(s => s.CreationData).ToList();
+                    break;
+
+                case "CreationData_desc":
+                    items = items.OrderByDescending(s => s.CreationData).ToList();
+                    break;
+
+                case "ModificationData":
+                    items = items.OrderBy(s => s.ModificationData).ToList();
+                    break;
+
+                case "ModificationData_desc":
+                    items = items.OrderByDescending(s => s.ModificationData).ToList();
+                    break;
+
+                case "Manager":
+                    items = items.OrderBy(s => s.Manager).ToList();
+                    break;
+
+                case "Manager_desc":
+                    items = items.OrderByDescending(s => s.Manager).ToList();
+                    break;
+
+                case "Quantity":
+                    items = items.OrderBy(s => s.Quantity).ToList();
+                    break;
+
+                case "Quantity_desc":
+                    items = items.OrderByDescending(s => s.Quantity).ToList();
+                    break;
+
+                case "Amount":
+                    items = items.OrderBy(s => s.Amount).ToList();
+                    break;
+
+                case "Amount_desc":
+                    items = items.OrderByDescending(s => s.Amount).ToList();
+                    break;
+
+                case "City":
+                    items = items.OrderBy(s => s.City).ToList();
+                    break;
+
+                case "City_desc":
+                    items = items.OrderByDescending(s => s.City).ToList();
+                    break;
+
+                default:
+                    items = items.OrderBy(s => s.Id).ToList();
+                    break;
+            }
+
+            
 
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             IndexViewModel viewModel = new IndexViewModel

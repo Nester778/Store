@@ -43,38 +43,6 @@ namespace Store.Domain
                 return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             }
         }
-        public IQueryable<Product> GetProduct(int pageNum)
-        {
-            int pageSize = 5;
-            int pageSkip = 0;
-            if (pageNum > 0)
-            {
-                pageSize = 10;
-                pageSkip += 5;
-                if (pageNum > 1)
-                {
-                    pageSize = 25;
-                    pageSkip += 10;
-                    if (pageNum > 2)
-                    {
-                        pageSize = 50;
-                        pageSkip += 25;
-                        if (pageNum > 3)
-                        {
-                            pageSize = 100;
-                            pageSkip += 50;
-                            if (pageNum > 4)
-                            {
-                                pageSize = 100;
-                                for (int i = 4; i < pageNum; i++)
-                                    pageSkip += 100;
-                            }
-                        }
-                    }
-                }
-            }
-            return context.product.Skip(pageSkip).Take(pageSize);
-        }
         public IQueryable<Product> GetAllProduct()
         {
             return context.product.OrderBy(x => x.Id);
@@ -162,72 +130,6 @@ namespace Store.Domain
             stream.Close();
 
             return products[0];
-        }
-
-        public List<Product> GetProductExcel(int pageNum)
-        {
-            int pageSize = 5;
-            int pageSkip = 0;
-            if (pageNum > 0)
-            {
-                pageSize = 10;
-                pageSkip += 5;
-                if (pageNum > 1)
-                {
-                    pageSize = 25;
-                    pageSkip += 10;
-                    if (pageNum > 2)
-                    {
-                        pageSize = 50;
-                        pageSkip += 25;
-                        if (pageNum > 3)
-                        {
-                            pageSize = 100;
-                            pageSkip += 50;
-                            if (pageNum > 4)
-                            {
-                                pageSize = 100;
-                                for (int i = 4; i < pageNum; i++)
-                                    pageSkip += 100;
-                            }
-                        }
-                    }
-                }
-            }
-            List<Product> products = new List<Product>();
-           
-            string path = "..\\Store\\wwwroot\\Bd.xlsx";
-
-
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read);
-
-
-            //string xsltPath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(@"~/App_Data"), fileName);
-
-            var workbook = new XLWorkbook(stream);
-            var worksheet = workbook.Worksheet(1);
-            var rows = worksheet.RowsUsed();
-
-            foreach (var row in rows)
-            {
-                Product product = new Product();
-                product.Id = Convert.ToInt32(row.Cell(1).Value.ToString());
-                product.ProviderName = row.Cell(2).Value.ToString();
-                product.Description = row.Cell(3).Value.ToString();
-                product.CreationData = Convert.ToDateTime(row.Cell(4).Value.ToString());
-                product.ModificationData = Convert.ToDateTime(row.Cell(5).Value.ToString());
-                product.Manager = row.Cell(6).Value.ToString();
-                product.Quantity = Convert.ToInt32(row.Cell(7).Value.ToString());
-                product.Amount = Convert.ToInt32(row.Cell(8).Value.ToString());
-                product.City = row.Cell(9).Value.ToString();
-
-                products.Add(product);
-            }
-            
-            stream.Close();
-            
-            return products.Skip(pageSkip).Take(pageSize).ToList(); 
         }
 
         public void SaveProductExcel(Product product, List<Product> products)

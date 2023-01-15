@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Store.Domain.Product
+
+<h1>Edit a Product</h1>
+
+<form asp-controller="Home" asp-action="EditElementExcel" method="post">
+    <input class="form-input" type="hidden" asp-for="Id" value="@Model.Id">
+    <input class="form-input" type="hidden" asp-for="CreationData" value="@Model.CreationData">
+    <div>
+        <label class="form-label" asp-for="ProviderName" for="name">Імʼя</label>
+        <input class="form-input" type="text" asp-for="ProviderName" value="@Model.ProviderName">
+    </div>
+
+    <div>
+        <label class="form-label" asp-for="Description" for="name">Опис</label>
+        <input class="form-input" type="text" asp-for="Description" value="@Model.Description">
+    </div>
+
+    <div>
+        <label class="form-label" asp-for="Manager" for="name">Імʼя менеджера</label>
+        <input class="form-input" type="text" asp-for="Manager" value="@Model.Manager">
+    </div>
+
+    <div>
+        <label class="form-label" asp-for="Quantity" for="name">Кількість</label>
+        <input class="form-input" type="text" asp-for="Quantity" value="@Model.Quantity">
+    </div>
+
+    <div>
+        <label class="form-label" asp-for="Amount" for="name">Вартість</label>
+        <input class="form-input" type="text" asp-for="Amount" value="@Model.Amount">
+    </div>
+
+    <div>
+        <label class="form-label" asp-for="City" for="name">Місто</label>
+        <input class="form-input" type="text" asp-for="City" value="@Model.City">
+    </div>
+
+    <button id="submit" class="form-submit-button" type="submit">Змінити</button>
+
+
+</form>

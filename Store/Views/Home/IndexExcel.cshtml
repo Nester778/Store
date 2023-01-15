@@ -1,28 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 @using Store.Models
 @model IndexViewModel
 
-
+<div class="nav-link text-dark">
+    <span>Sum =</span>
+    <span class="screen">0</span>
+</div>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>ProviderName</th>
-            <th>Description</th>
-            <th>CreationData</th>
-            <th>ModificationData</th>
-            <th>Manager</th>
-            <th>Quantity</th>
-            <th>Amount</th>
-            <th>City</th>
+            <th>@Html.ActionLink("Id", "IndexExcel", new { sortOrder = ViewBag.IdSortParam, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("ProviderName", "IndexExcel", new { sortOrder = ViewBag.ProviderNameSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Description", "IndexExcel", new { sortOrder = ViewBag.DescriptionSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("CreationData", "IndexExcel", new { sortOrder = ViewBag.CreationDataSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("ModificationData", "IndexExcel", new { sortOrder = ViewBag.ModificationDataSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Manager", "IndexExcel", new { sortOrder = ViewBag.ManagerSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Quantity", "IndexExcel", new { sortOrder = ViewBag.QuantitySortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Amount", "IndexExcel", new { sortOrder = ViewBag.AmountSortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("City", "IndexExcel", new { sortOrder = ViewBag.CitySortParm, page = Model.PageViewModel.PageNumber })</th>
 
         </tr>
     </thead>
@@ -50,21 +48,21 @@
     }
 </table>
 
+
+
+
 @if (Model.PageViewModel.HasPreviousPage)
 {
-    <a asp-action="IndexExcel"
-       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-       class="btn btn-outline-dark">
-        <i class="glyphicon glyphicon-chevron-left"></i>
-        Назад
-    </a>}
+    <span class="btn btn-outline-dark">
+        @Html.ActionLink("Назад", "IndexExcel", new { page = Model.PageViewModel.PageNumber - 1 })
+    </span>
+}
 @if (Model.PageViewModel.HasNextPage)
 {
-    <a asp-action="IndexIndexExcel"
-       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-       class="btn btn-outline-dark">
-        Вперед
-        <i class="glyphicon glyphicon-chevron-right"></i>
-    </a>}
+    <span class="btn btn-outline-dark">
+        @Html.ActionLink("Вперед", "IndexExcel", new { page = Model.PageViewModel.PageNumber + 1 })
+    </span>
+}
+
 
 

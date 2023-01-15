@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-controller="Home" asp-action="Edit">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>ProviderName</th>
+            <th>Description</th>
+            <th>CreationData</th>
+            <th>ModificationData</th>
+            <th>Manager</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>City</th>
+
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        var color = "";
+        @if (item.CreationData != item.ModificationData)
+        {
+            color = "background-color: green";
+        }
+
+        <tr style="@color">
+            <td>@item.Id</td>
+            <td>@item.ProviderName</td>
+            <td>@item.Description</td>
+            <td>@item.CreationData</td>
+            <td>@item.ModificationData</td>
+            <td>@item.Manager</td>
+            <td>@item.Quantity</td>
+            <td class="amount" id="@item.Id">@item.Amount</td>
+            <td>@item.City</td>
+            <td><a id="@item.Id" href="~/Home/EditElementExcel?id=@item.Id">Змінити</a></td>
+        </tr>
+    }
+</table>

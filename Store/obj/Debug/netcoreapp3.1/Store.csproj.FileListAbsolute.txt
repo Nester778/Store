@@ -110,3 +110,7 @@ C:\Users\anest\source\repos\Store\Store\bin\Debug\netcoreapp3.1\runtimes\linux\l
 C:\Users\anest\source\repos\Store\Store\bin\Debug\netcoreapp3.1\runtimes\osx\lib\netcoreapp2.0\System.Data.Odbc.dll
 C:\Users\anest\source\repos\Store\Store\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Data.Odbc.dll
 C:\Users\anest\source\repos\Store\Store\obj\Debug\netcoreapp3.1\Razor\Views\Home\IndexExcel.cshtml.g.cs
+C:\Users\anest\source\repos\Store\Store\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddExcel.cshtml.g.cs
+C:\Users\anest\source\repos\Store\Store\obj\Debug\netcoreapp3.1\Razor\Views\Home\EditExcel.cshtml.g.cs
+C:\Users\anest\source\repos\Store\Store\obj\Debug\netcoreapp3.1\Razor\Views\Home\EditElementExcel.cshtml.g.cs
+C:\Users\anest\source\repos\Store\Store\obj\Debug\netcoreapp3.1\Razor\Views\Home\DeleteExcel.cshtml.g.cs

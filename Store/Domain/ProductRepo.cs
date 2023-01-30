@@ -1,30 +1,23 @@
-﻿using Dapper;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using ClosedXML.Excel;
-//using Excel = Microsoft.Office.Interop.Excel;
-using Aspose.Cells;
-using System.Web;
 using System.IO;
-using ExcelDataReader;
 using Microsoft.EntityFrameworkCore;
-using DocumentFormat.OpenXml.Spreadsheet;
-using System.Data.Odbc;
+
 
 namespace Store.Domain
 {
     public class ProductRepo
     {
-        string MyConString_MySQL = "DRIVER={SQL Server};" +
-                                 "SERVER=26.230.84.114, 1433;" +
+        string connectionString = "DRIVER={SQL Server};" +
+                                 "SERVER=store.c3shhznpmx8i.us-east-1.rds.amazonaws.com, 1433;" +
                                  "DATABASE=Store;" +
-                                 "User ID=sa;" +
-                                 "Password=sa;";
+                                 "User ID=admin;" +
+                                 "Password=12345678;";
 
         private readonly IConfiguration _config;
         private readonly AppDbContext context;
@@ -175,49 +168,51 @@ namespace Store.Domain
             product.CreationData = DateTime.Now;
             product.ModificationData = product.CreationData;
 
-            string queryString =
-        "SET TRANSACTION ISOLATION LEVEL READ COMMITTED;\n" +
-        "BEGIN TRANSACTION\n" +
-        "INSERT INTO Product (ProviderName, Description, CreationData, ModificationData, Manager, Quantity, Amount, City)" +
-        "VALUES(('" + product.ProviderName + "'), ('" + product.Description + "'), ('" + product.CreationData + "'), ('" + product.ModificationData + "'), " +
-        "('" + product.Manager + "'), ('" + product.Quantity + "'), ('" + product.Amount + "'), ('" + product.City + "'));\n" +
-        "COMMIT TRANSACTION";
+        //    string queryString =
+        //"SET TRANSACTION ISOLATION LEVEL READ COMMITTED;\n" +
+        //"BEGIN TRANSACTION\n" +
+        //"INSERT INTO Product (ProviderName, Description, CreationData, ModificationData, Manager, Quantity, Amount, City)" +
+        //"VALUES(('" + product.ProviderName + "'), ('" + product.Description + "'), " +
+        //"('" + product.CreationData.Year.ToString() + "." + product.CreationData.Month.ToString() + "." + product.CreationData.Day.ToString() + " " + product.CreationData.TimeOfDay.ToString()+"'), " +
+        //"('" + product.ModificationData.Year.ToString() + "." + product.ModificationData.Month.ToString() + "." + product.ModificationData.Day.ToString() + " " + product.ModificationData.TimeOfDay.ToString() + "'), " +
+        //"('" + product.Manager + "'), ('" + product.Quantity + "'), ('" + product.Amount + "'), ('" + product.City + "'));\n" +
+        //"COMMIT TRANSACTION";
 
-            OdbcCommand command = new OdbcCommand(queryString);
+        //    OdbcCommand command = new OdbcCommand(queryString);
 
-            using (OdbcConnection connection = new OdbcConnection(MyConString_MySQL))
-            {
-                command.Connection = connection;
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+        //    using (OdbcConnection connection = new OdbcConnection(connectionString))
+        //    {
+        //        command.Connection = connection;
+        //        connection.Open();
+        //        command.ExecuteNonQuery();
+        //    }
 
 
-            //context.Entry(product).State = EntityState.Added;
-            //context.SaveChanges();
+            context.Entry(product).State = EntityState.Added;
+            context.SaveChanges();
         }
 
         public void Delete(Product product)
         {
 
-            string queryString =
-        "SET TRANSACTION ISOLATION LEVEL READ COMMITTED;\n" +
-        "BEGIN TRANSACTION\n" +
-        "DELETE from Product where ID = ('" + product.Id + "')\n" +
-        "COMMIT TRANSACTION";
+        //    string queryString =
+        //"SET TRANSACTION ISOLATION LEVEL READ COMMITTED;\n" +
+        //"BEGIN TRANSACTION\n" +
+        //"DELETE from Product where ID = ('" + product.Id + "')\n" +
+        //"COMMIT TRANSACTION";
 
-            OdbcCommand command = new OdbcCommand(queryString);
+        //    OdbcCommand command = new OdbcCommand(queryString);
 
-            using (OdbcConnection connection = new OdbcConnection(MyConString_MySQL))
-            {
-                command.Connection = connection;
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+        //    using (OdbcConnection connection = new OdbcConnection(connectionString))
+        //    {
+        //        command.Connection = connection;
+        //        connection.Open();
+        //        command.ExecuteNonQuery();
+        //    }
 
 
-            //context.product.Remove(product);
-            //context.SaveChanges();
+            context.product.Remove(product);
+            context.SaveChanges();
         }
 
         public void DeleteExcel(Product product)
@@ -251,28 +246,27 @@ namespace Store.Domain
         }
         
         public void Modified(Product product)
-        {
+        { 
+        //    string queryString =
+        //"SET TRANSACTION ISOLATION LEVEL READ COMMITTED;\n" +
+        //"BEGIN TRANSACTION\n" +
+        //"UPDATE Product SET ProviderName = ('" + product.ProviderName + "'), Description = ('" + product.Description + "'), ModificationData = " +
+        //"('" + product.ModificationData.Year.ToString() + "." + product.ModificationData.Month.ToString() + "." + product.ModificationData.Day.ToString() + " " + product.ModificationData.TimeOfDay.ToString() + "')," +
+        //"Manager = ('" + product.Manager + "'), Quantity = ('" + product.Quantity + "'), Amount = ('" + product.Amount + "')," +
+        //"City = ('" + product.City + "') WHERE ID = ('" + product.Id + "')\n" +
+        //"COMMIT TRANSACTION";
 
-            
-            string queryString =
-        "SET TRANSACTION ISOLATION LEVEL READ COMMITTED;\n" +
-        "BEGIN TRANSACTION\n" +
-        "UPDATE Product SET ProviderName = ('" + product.ProviderName + "'), Description = ('" + product.Description + "'), ModificationData = " +
-        "('" + product.ModificationData + "'), Manager = ('" + product.Manager + "'), Quantity = ('" + product.Quantity + "'), Amount = ('" + product.Amount + "')," +
-        "City = ('" + product.City + "') WHERE ID = ('" + product.Id + "')\n" +
-        "COMMIT TRANSACTION";
+        //    OdbcCommand command = new OdbcCommand(queryString);
 
-            OdbcCommand command = new OdbcCommand(queryString);
+        //    using (OdbcConnection connection = new OdbcConnection(connectionString))
+        //    {
+        //        command.Connection = connection;
+        //        connection.Open();
+        //        command.ExecuteNonQuery();
+        //    }
 
-            using (OdbcConnection connection = new OdbcConnection(MyConString_MySQL))
-            {
-                command.Connection = connection;
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-
-            //context.Entry(entity).State = EntityState.Modified;
-            //context.SaveChanges();
+            context.Entry(product).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         public void ModifiedExcel(Product product)

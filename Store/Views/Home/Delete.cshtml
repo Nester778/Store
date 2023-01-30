@@ -3,9 +3,26 @@
 *@
 @{
 }
-@model IList<Store.Domain.ProductViewModel>
+@model Store.Models.DeleteViewModel;
 
+@if (Model.DataType == "excel")
+{
+    @Html.ActionLink("Перейти да таблиці з MSSQL", "Delete", new { dataType = "MSSQL" })
+}
+else
+{
+    @Html.ActionLink("Перейти да таблиці з Excel", "Delete", new { dataType = "excel" })
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        <input class="form-input" type="text" asp-for="SearchString" placeholder="Введіть імʼя постачальника" required>
+        <input type="submit" value="Search" />
+    </p>
+}
 <form asp-controller="Home" asp-action="Delete" method="post">
+    <input class="form-input" type="hidden" asp-for="DataType" value="@Model.DataType">
     <table class="table">
         <thead>
             <tr>
@@ -21,28 +38,28 @@
                 <td><input type="checkbox" name="allCheckbox" id="selectAll" /></td>
             </tr>
         </thead>
-        @for(int i = 0;i<Model.Count;i++)
+        @for (int i = 0; i < Model.productViewModel.Count; i++)
         {
 
             var color = "";
-            @if (Model[i].CreationData != Model[i].ModificationData)
+            @if (Model.productViewModel[i].CreationData != Model.productViewModel[i].ModificationData)
             {
                 color = "background-color: green";
             }
 
             <tr style="@color">
-                <td>@Html.DisplayFor(modelItem => Model[i].Id)</td>
-                <td>@Html.DisplayFor(modelItem => Model[i].ProviderName)</td>
-                <td>@Html.DisplayFor(modelItem => Model[i].Description)</td>
-                <td>@Html.DisplayFor(modelItem => Model[i].CreationData)</td>
-                <td>@Html.DisplayFor(modelItem => Model[i].ModificationData)</td>
-                <td>@Html.DisplayFor(modelItem => Model[i].Manager)</td>
-                <td>@Html.DisplayFor(modelItem => Model[i].Quantity)</td>
-                <td class="amount" id="@Model[i].Id">@Html.DisplayFor(modelItem => Model[i].Amount)</td>
-                <td>@Html.DisplayFor(modelItem => Model[i].City)</td>
+                <td>@Model.productViewModel[i].Id</td>
+                <td>@Model.productViewModel[i].ProviderName</td>
+                <td>@Model.productViewModel[i].Description</td>
+                <td>@Model.productViewModel[i].CreationData</td>
+                <td>@Model.productViewModel[i].ModificationData</td>
+                <td>@Model.productViewModel[i].Manager</td>
+                <td>@Model.productViewModel[i].Quantity</td>
+                <td class="amount" id="@Model.productViewModel[i].Id">@Model.productViewModel[i].Amount</td>
+                <td>@Model.productViewModel[i].City</td>
                 <td>
-                    <input asp-for="@Model[i].Prods.Selected" />
-                    <input type="hidden" asp-for="@Model[i].Id" />
+                    <input class="form-input" type="checkbox" asp-for="productViewModel[i].Prods.Selected">
+                    <input type="hidden" asp-for="productViewModel[i].Id" value="@Model.productViewModel[i].Id" />
                 </td>
 
             </tr>

@@ -8,7 +8,9 @@ namespace Store.Models
 {
     public class IndexViewModel
     {
+        public string DataType { get; set; }
         public IEnumerable<Product> Products { get; set; }
         public PageViewModel PageViewModel { get; set; }
+        public string SearchString { get; set; }
     }
 }

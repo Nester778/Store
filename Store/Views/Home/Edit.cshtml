@@ -3,13 +3,24 @@
 *@
 @{
 }
+@model EditViewModel
 
-<form asp-controller="Home" asp-action="Edit">
+@if (Model.DataType == "excel")
+{
+    @Html.ActionLink("Перейти да таблиці з MSSQL", "Edit", new { dataType = "MSSQL" })
+}
+else
+{
+    @Html.ActionLink("Перейти да таблиці з Excel", "Edit", new { dataType = "excel" })
+}
+
+@using (Html.BeginForm())
+{
     <p>
-        Title: <input type="text" name="SearchString" />
-        <input type="submit" value="Filter" />
+        @Html.TextBox("SearchString", "", new { @placeholder = "Введіть імʼя постачальника" })
+        <input type="submit" value="Search" />
     </p>
-</form>
+}
 
 <table class="table">
     <thead>
@@ -26,7 +37,7 @@
 
         </tr>
     </thead>
-    @foreach (var item in Model)
+    @foreach (var item in Model.products)
     {
 
         var color = "";
@@ -45,7 +56,7 @@
             <td>@item.Quantity</td>
             <td class="amount" id="@item.Id">@item.Amount</td>
             <td>@item.City</td>
-            <td><a id="@item.Id" href="~/Home/EditElement?id=@item.Id">Змінити</a></td>
+            <td><a id="@item.Id" href="~/Home/EditElement?id=@item.Id&dataType=@Model.DataType">Змінити</a></td>
         </tr>
     }
 </table>

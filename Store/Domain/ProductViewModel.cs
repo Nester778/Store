@@ -17,7 +17,7 @@ namespace Store.Domain
         public int Quantity { get; set; }
         public int Amount { get; set; }
         public string City { get; set; }
-
         public SelectListItem Prods { get; set; }
+
     }
 }

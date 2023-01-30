@@ -8,12 +8,12 @@ namespace Store.Models
     public class PageViewModel
     {
         public int PageNumber { get; private set; }
-        public int TotalPages { get; private set; }
+        public bool NextPage { get; private set; }
 
-        public PageViewModel(int count, int pageNumber, int pageSize)
+        public PageViewModel(int pageNumber, bool nextPage)
         {
             PageNumber = pageNumber;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+            NextPage = nextPage;
         }
 
         public bool HasPreviousPage
@@ -28,7 +28,7 @@ namespace Store.Models
         {
             get
             {
-                return (PageNumber < TotalPages);
+                return NextPage;
             }
         }
     }

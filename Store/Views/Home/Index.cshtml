@@ -4,6 +4,15 @@
 @using Store.Models
 @model IndexViewModel
 
+@if (Model.DataType == "excel")
+{
+    @Html.ActionLink("Перейти да таблиці з MSSQL", "Index", new { dataType = "MSSQL" })
+}
+else
+{
+    @Html.ActionLink("Перейти да таблиці з Excel", "Index", new { dataType = "excel" })
+}
+
 <div class="nav-link text-dark">
     <span>Sum =</span>
     <span class="screen">0</span>
@@ -12,15 +21,15 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.ActionLink("Id", "Index", new { sortOrder = ViewBag.IdSortParam, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("ProviderName", "Index", new { sortOrder = ViewBag.ProviderNameSortParm, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("CreationData", "Index", new { sortOrder = ViewBag.CreationDataSortParm, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("ModificationData", "Index", new { sortOrder = ViewBag.ModificationDataSortParm, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("Manager", "Index", new { sortOrder = ViewBag.ManagerSortParm, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("Quantity", "Index", new { sortOrder = ViewBag.QuantitySortParm, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("Amount", "Index", new { sortOrder = ViewBag.AmountSortParm, page = Model.PageViewModel.PageNumber })</th>
-            <th>@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, page = Model.PageViewModel.PageNumber })</th>
+            <th>@Html.ActionLink("Id", "Index", new { sortOrder = ViewBag.IdSortParam, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("ProviderName", "Index", new { sortOrder = ViewBag.ProviderNameSortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("CreationData", "Index", new { sortOrder = ViewBag.CreationDataSortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("ModificationData", "Index", new { sortOrder = ViewBag.ModificationDataSortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("Manager", "Index", new { sortOrder = ViewBag.ManagerSortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("Quantity", "Index", new { sortOrder = ViewBag.QuantitySortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("Amount", "Index", new { sortOrder = ViewBag.AmountSortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
+            <th>@Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, page = Model.PageViewModel.PageNumber, dataType = Model.DataType })</th>
 
         </tr>
     </thead>
@@ -55,13 +64,13 @@
 @if (Model.PageViewModel.HasPreviousPage)
 {
     <span class="btn btn-outline-dark">
-        @Html.ActionLink("Назад", "Index", new { page = Model.PageViewModel.PageNumber - 1})
+        @Html.ActionLink("Назад", "Index", new { page = Model.PageViewModel.PageNumber - 1, dataType = Model.DataType })
     </span>
 }
 @if (Model.PageViewModel.HasNextPage)
 {
     <span class="btn btn-outline-dark">
-        @Html.ActionLink("Вперед", "Index", new { page = Model.PageViewModel.PageNumber + 1})
+        @Html.ActionLink("Вперед", "Index", new { page = Model.PageViewModel.PageNumber + 1, dataType = Model.DataType })
     </span>
 }
 

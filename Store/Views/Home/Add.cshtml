@@ -1,11 +1,9 @@
-﻿@model Store.Domain.Product
+﻿@model Store.Models.AddViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
-
-
-<h2 >
+<h2>
     Добавить продукт
 </h2>
 
@@ -13,33 +11,40 @@
 
 <form asp-controller="Home" asp-action="Add" method="post">
     <div>
-        <label class="form-label" asp-for="ProviderName" for="name">Імʼя</label>
-        <input class="form-input" type="text" asp-for="ProviderName"  placeholder="Введіть імʼя постачальника" required>
+        <label class="form-label" asp-for="product.ProviderName" for="name">Імʼя</label>
+        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.ProviderName" placeholder="Введіть імʼя постачальника" required>
     </div>
 
     <div>
-        <label class="form-label" asp-for="Description" for="name">Опис</label>
-        <input class="form-input" type="text" asp-for="Description" placeholder="Введіть опис" required>
+        <label class="form-label" asp-for="product.Description" for="name">Опис</label>
+        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.Description" placeholder="Введіть опис" required>
     </div>
 
     <div>
-        <label class="form-label" asp-for="Manager" for="name">Імʼя менеджера</label>
-        <input class="form-input" type="text" asp-for="Manager"  placeholder="Введіть імʼя менеджера" required>
+        <label class="form-label" asp-for="product.Manager" for="name">Імʼя менеджера</label>
+        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.Manager" placeholder="Введіть імʼя менеджера" required>
     </div>
 
     <div>
-        <label class="form-label" asp-for="Quantity" for="name">Кількість</label>
-        <input class="form-input" type="text" asp-for="Quantity" placeholder="Введіть кількість" required>
+        <label class="form-label" asp-for="product.Quantity" for="name">Кількість</label>
+        <input class="form-input" pattern="^[0-9]+$" type="text" asp-for="product.Quantity" placeholder="Введіть кількість" required>
     </div>
 
     <div>
-        <label class="form-label" asp-for="Amount" for="name">Вартість</label>
-        <input class="form-input" type="text" asp-for="Amount" placeholder="Введіть вартість" required>
+        <label class="form-label" asp-for="product.Amount" for="name">Вартість</label>
+        <input class="form-input"  pattern="^[0-9]+$" type="text" asp-for="product.Amount" placeholder="Введіть вартість" required>
     </div>
 
     <div>
-        <label class="form-label" asp-for="City" for="name">Місто</label>
-        <input class="form-input" type="text" asp-for="City" placeholder="Введіть місто" required>
+        <label class="form-label" asp-for="product.City" for="name">Місто</label>
+        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.City" placeholder="Введіть місто" required>
+    </div>
+    <div>
+        <input class="form-input" type="radio" asp-for="DataType" value="MSSQL" checked="checked"> MSSQL
+    </div>
+
+    <div>
+        <input class="form-input" type="radio" asp-for="DataType" value="excel"> Excel
     </div>
 
     <button id="submit" class="form-submit-button" type="submit">Додати</button>

@@ -12,17 +12,17 @@
 <form asp-controller="Home" asp-action="Add" method="post">
     <div>
         <label class="form-label" asp-for="product.ProviderName" for="name">Імʼя</label>
-        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.ProviderName" placeholder="Введіть імʼя постачальника" required>
+        <input class="form-input" type="text" asp-for="product.ProviderName" placeholder="Введіть імʼя постачальника" required>
     </div>
 
     <div>
         <label class="form-label" asp-for="product.Description" for="name">Опис</label>
-        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.Description" placeholder="Введіть опис" required>
+        <input class="form-input" type="text" asp-for="product.Description" placeholder="Введіть опис" required>
     </div>
 
     <div>
         <label class="form-label" asp-for="product.Manager" for="name">Імʼя менеджера</label>
-        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.Manager" placeholder="Введіть імʼя менеджера" required>
+        <input class="form-input" type="text" asp-for="product.Manager" placeholder="Введіть імʼя менеджера" required>
     </div>
 
     <div>
@@ -37,7 +37,7 @@
 
     <div>
         <label class="form-label" asp-for="product.City" for="name">Місто</label>
-        <input class="form-input" pattern="^[A-Za-zА-Яа-яЁё\s]+$" type="text" asp-for="product.City" placeholder="Введіть місто" required>
+        <input class="form-input" type="text" asp-for="product.City" placeholder="Введіть місто" required>
     </div>
     <div>
         <input class="form-input" type="radio" asp-for="DataType" value="MSSQL" checked="checked"> MSSQL

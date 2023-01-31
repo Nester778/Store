@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <_PublishTargetUrl>ftp://NesterStore.somee.com/www.NesterStore.somee.com/http://www.NesterStore.somee.com</_PublishTargetUrl>
+    <History>False|2023-01-30T15:13:43.7229216Z;False|2023-01-30T17:06:48.7378952+02:00;False|2023-01-30T17:06:13.7880732+02:00;False|2023-01-30T17:05:37.3437025+02:00;False|2023-01-30T16:57:15.9248066+02:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=store.c3shhznpmx8i.us-east-1.rds.amazonaws.com, 1433%3bDatabase=Store%3bPersist Security Info=True%3bUser ID=admin%3bPassword=12345678</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
